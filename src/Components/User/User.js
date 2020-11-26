@@ -15,7 +15,7 @@ function User() {
   const userData = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const fetchData = async () => {
-    await axios("http://localhost:3001/users")
+    await axios("http://localhost:5000/users")
       .then((response) => {
         setData(response.data);
       })

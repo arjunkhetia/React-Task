@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const add = (data) => {
   return (dispatch) => {
-    axios.post('http://localhost:3001/users', data)
+    axios.post('http://localhost:5000/users', data)
       .then((response) => {
         dispatch({
           type: "POST",
@@ -20,7 +20,7 @@ export const add = (data) => {
 
 export const update = (id, data) => {
   return (dispatch) => {
-    axios.put('http://localhost:3001/users/' + id, data)
+    axios.put('http://localhost:5000/users/' + id, data)
       .then((response) => {
         dispatch({
           type: "PUT",
@@ -38,7 +38,7 @@ export const update = (id, data) => {
 
 export const delet = (id) => {
   return (dispatch) => {
-    axios.delete('http://localhost:3001/users/'+id)
+    axios.delete('http://localhost:5000/users/'+id)
       .then((response) => {
         dispatch({
           type: "DELETE",
