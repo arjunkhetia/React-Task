@@ -3,11 +3,12 @@ import React, { useState, useEffect } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { post } from "../../actions";
+import { post, delet } from "../../actions";
 import axios from 'axios';
 
 function User() {
   const [data, setData] = useState([]);
+  const [user, setUser] = useState({});
   const userData = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const fetchData = async () => {
@@ -175,7 +176,7 @@ function User() {
                   <td>{elem.gender}</td>
                   <td>
                     <button type="button" className="btn btn-info">Edit</button> &nbsp; 
-                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#deleteModal" onClick={() => setUser(elem)}>Delete</button>
                   </td>
                 </tr>
               })}
@@ -191,7 +192,12 @@ function User() {
             </div>
             <div className="modal-footer" style={{ justifyContent: 'center' }}>
               <button type="button" className="btn btn-secondary" data-dismiss="modal">No</button>
-              <button type="button" className="btn btn-primary">Yes</button>
+              <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => {
+                dispatch(delet(user['_id']));
+                setTimeout(() => {
+                  fetchData();
+                }, 500);
+              }}>Yes</button>
             </div>
           </div>
         </div>

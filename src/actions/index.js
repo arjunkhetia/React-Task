@@ -17,3 +17,21 @@ export const post = (data) => {
       });
   };
 };
+
+export const delet = (id) => {
+  return (dispatch) => {
+    axios.delete('http://localhost:3001/users/'+id)
+      .then((response) => {
+        dispatch({
+          type: "DELETE",
+          payload: response['data'],
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: "DELETE",
+          payload: error,
+        });
+      });
+  };
+};
