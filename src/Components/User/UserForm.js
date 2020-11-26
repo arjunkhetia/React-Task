@@ -1,13 +1,17 @@
-import React, { Component } from "react"
+import React from "react"
 import { Formik, Field, Form } from "formik"
 import * as Yup from 'yup'
+import { useSelector, useDispatch } from 'react-redux'
+import { increment } from '../../actions'
 
-class UserForm extends Component {
-
-  render() {
+function UserForm() {
+    const counter = useSelector(state => state.userData)
+    const dispatch = useDispatch()
     return (
       <div className="container">
         <h4>User Registration Form</h4>
+        <h1>Counter : {counter}</h1>
+      <button onClick={() => dispatch(increment())}> + </button> &nbsp;
         <Formik
           initialValues={{ name: "", email: "", contact: "", gender: "" }}
           onSubmit={(values, { setSubmitting }) => {
@@ -63,7 +67,7 @@ class UserForm extends Component {
                             <Field className="form-check-input" type="radio" name="gender" id="female" value="female" />
                                 <label className="form-check-label" htmlFor="female">Female</label>
                     </div>
-            </div>
+              </div>
 
               <div className="form-group">
                 <button
@@ -79,7 +83,6 @@ class UserForm extends Component {
         </Formik>
       </div>
     );
-  }
 }
 
-export default UserForm;
+export default UserForm
