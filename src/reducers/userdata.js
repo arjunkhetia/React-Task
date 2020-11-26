@@ -1,11 +1,16 @@
-const userDataReducer = (state = 0, action) => {
+import axios from 'axios';
+
+const userDataReducer = (state = {}, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "INCREMENTBY5":
-      return state + action.payload;
-    case "DECREMENT":
-      return state - 1;
+    case "POST":
+      axios.post('http://localhost:3001/users', action.payload)
+      .then((response) => {
+        return response['data'];
+      })
+      .catch((error) => {
+        return error;
+      });
+    // eslint-disable-next-line no-fallthrough
     default:
       return state;
   }

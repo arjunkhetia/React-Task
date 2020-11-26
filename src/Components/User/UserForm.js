@@ -2,21 +2,21 @@ import React from "react"
 import { Formik, Field, Form } from "formik"
 import * as Yup from 'yup'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment } from '../../actions'
+import { post } from '../../actions'
 
 function UserForm() {
-    const counter = useSelector(state => state.userData)
+    const userData = useSelector(state => state.userData)
     const dispatch = useDispatch()
     return (
       <div className="container">
         <h4>User Registration Form</h4>
-        <h1>Counter : {counter}</h1>
-      <button onClick={() => dispatch(increment())}> + </button> &nbsp;
         <Formik
           initialValues={{ name: "", email: "", contact: "", gender: "" }}
           onSubmit={(values, { setSubmitting }) => {
+            dispatch(post(values));
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
+              console.log(userData);
               setSubmitting(false);
             }, 1000);
           }}

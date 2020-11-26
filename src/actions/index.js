@@ -1,5 +1,6 @@
-export const increment = () => {
+export const post = (data) => {
   return {
-    type: "INCREMENT",
+    type: "POST",
+    payload: data
   };
 };
