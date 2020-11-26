@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import UserForm from '../User/UserForm'
-import UserList from '../User/UserList'
+import User from '../User/User'
 
 class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                <UserForm></UserForm>
-                <UserList></UserList>
+                <User></User>
             </React.Fragment>
         )
     }
