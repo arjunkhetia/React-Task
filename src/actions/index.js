@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const post = (data) => {
+export const add = (data) => {
   return (dispatch) => {
     axios.post('http://localhost:3001/users', data)
       .then((response) => {
@@ -12,6 +12,24 @@ export const post = (data) => {
       .catch((error) => {
         dispatch({
           type: "POST",
+          payload: error,
+        });
+      });
+  };
+};
+
+export const update = (id, data) => {
+  return (dispatch) => {
+    axios.put('http://localhost:3001/users/' + id, data)
+      .then((response) => {
+        dispatch({
+          type: "PUT",
+          payload: response['data'],
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: "PUT",
           payload: error,
         });
       });
